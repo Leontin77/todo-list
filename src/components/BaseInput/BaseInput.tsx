@@ -1,7 +1,6 @@
 import React from 'react';
 import './BaseInput.scss'
 
-// Define a type for the BaseInput props
 type BaseInputProps = {
   label?: string;
   id?: string;

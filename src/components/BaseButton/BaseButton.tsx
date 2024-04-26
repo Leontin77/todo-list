@@ -4,14 +4,9 @@ import './BaseButton.scss'
 interface IBaseButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     title?: string ;
     disabled?: boolean;
-    iconLeft?: ReactNode;
-    iconRight?: ReactNode;
     fill?: string;
     className?: string;
     type?: "button" | "submit" | "reset" | undefined;
-    loading?: boolean;
-    variant?: "primary" | "secondary";
-    ref?: any
     onClick?: () => void;
   }
 
