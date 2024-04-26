@@ -1,0 +1,57 @@
+.taskCard {
+  outline: 0px;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: none;
+  border: 1px solid rgb(233, 236, 239);
+  position: relative;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  padding: 16px;
+  margin-top: 12px;
+  align-items: center;
+  margin: 10px 0;
+  height: auto;
+  &-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    // width: 100%;
+    max-width: 170px;
+    &:first-child {
+      margin-right: 30px;
+    }
+    &:last-child {
+      margin-left: auto;
+    }
+  }
+  .info{
+    width: 150px;
+    word-wrap: break-word
+  }
+  &-title {
+    display: block;
+  }
+  &-description {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    -webkit-tap-highlight-color: transparent;
+    color: rgb(134, 142, 150);
+    font-size: 16px;
+    line-height: 1.55;
+    text-decoration: none;
+    // width: 300px;
+  }
+  &-delete {
+    margin-left: auto;
+    cursor: pointer;
+  }
+}
+
+.done {
+    border: 1px solid rgb(50, 195, 2);
+}
