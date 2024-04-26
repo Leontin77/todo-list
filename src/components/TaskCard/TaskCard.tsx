@@ -1,7 +1,7 @@
 import "./TaskCard.scss";
 import { useState, useEffect } from "react";
 import { MdDelete } from "react-icons/md";
-import { Checkbox } from "@mui/material";
+// import { Checkbox } from "@mui/material";
 import Notiflix from "notiflix";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTask, updateTask } from "../../store/tasksSlice";
@@ -49,11 +49,11 @@ const TaskCard: React.FC<TaskCardProps> = ({
       onClick={() => setOpenDetails(!openDetails)}
     >
       <div className="taskCard-container">
-        <Checkbox
+        {/* <Checkbox
           checked={taskDone}
           onChange={handleCheckboxChange}
           onClick={(e) => e.stopPropagation()}
-        />
+        /> */}
       </div>
       <div className="taskCard-container info">
         <h4 className="taskCard-title">
