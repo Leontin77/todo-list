@@ -1,9 +1,7 @@
-// AllTasks.tsx
-import React from "react";
-import { useState } from "react";
+import React, { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
-import { Task } from "../../store/tasksSlice";
+import { Task } from "../../store/tasks/tasksSlice";
 import { openModal } from "../../store/openModal/openModalSlice";
 import BaseButton from "../../components/BaseButton/BaseButton";
 import TaskCard from "../../components/TaskCard/TaskCard";
@@ -15,25 +13,30 @@ const AllTasks: React.FC = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector((state: RootState) => state.modal.isOpen);
 
-  // console.log('tasks', tasks);
+  const memoizedTasks = useMemo(() => {
+    return tasks.map((task: Task) => (
+      <li key={task.id}>
+        <TaskCard
+          title={task.title}
+          description={task.description}
+          dateTime={task.date}
+          taskId={task.id}
+        />
+      </li>
+    ));
+  }, [tasks]);
 
+  const memoizedModal = useMemo(() => {
+    return isOpen ? <Modal /> : null;
+  }, [isOpen]);
 
   return (
     <div className="allTasks">
-      {isOpen && <Modal />}
+      {memoizedModal}
       <h1 className="allTasks-header">All Tasks</h1>
       <ul>
-        {tasks?.length ? (
-          tasks.map((task: Task) => (
-            <li key={task.id}>
-              <TaskCard
-                title={task.title}
-                description={task.description}
-                dateTime={task.date}
-                taskId={task.id}
-              />
-            </li>
-          ))
+        {tasks.length ? (
+          memoizedTasks
         ) : (
           <div className="allTasks-noTasks">You have no tasks yet</div>
         )}

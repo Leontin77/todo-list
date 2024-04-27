@@ -1,10 +1,10 @@
 import "./TaskCard.scss";
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { MdDelete } from "react-icons/md";
 import { Checkbox } from "@mui/material";
 import Notiflix from "notiflix";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTask, updateTask } from "../../store/tasksSlice";
+import { deleteTask, updateTask } from "../../store/tasks/tasksSlice";
 import { showDetails } from "../../helpers/showDetails";
 import { RootState } from "../../store/store";
 
@@ -27,7 +27,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
       state.tasks.tasks.find((task) => task.id === taskId)?.done
   );
 
-  const [openDetails, setOpenDetails] = useState(false);
+  const [openDetails, setOpenDetails] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   const handleDelete = (id: any) => {
@@ -42,6 +42,10 @@ const TaskCard: React.FC<TaskCardProps> = ({
       `Task marked as ${updatedDone ? "done" : "undone"}`
     );
   };
+
+  const memoizedDateTime = useMemo(() => {
+    return dateTime?.toLocaleString();
+  }, [dateTime]);
 
   return (
     <section
@@ -64,7 +68,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
         </div>
       </div>
       <div className="taskCard-container">
-        <span>{dateTime?.toLocaleString()}</span>
+        <span>{memoizedDateTime}</span>
         <MdDelete
           className="taskCard-delete"
           onClick={() => handleDelete(taskId)}
